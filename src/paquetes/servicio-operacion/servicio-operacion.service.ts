@@ -73,4 +73,32 @@ export class ServicioOperacionService {
         console.log('servicio operacion: ' + JSON.stringify(serviciooperacion));
         return await this.servicioOperacionRepository.save(serviciooperacion);
     }
+    /*
+    public List<Serviciooperacion> findServicioOperationByServicio(Servicio servicio) throws NandutiEJBException {
+        try {
+            StringBuilder sb = new StringBuilder();
+
+            sb.append("SELECT s.* ");
+            sb.append("FROM reddepago.serviciooperacion s ");
+            sb.append("join reddepago.redoperacion ro on ");
+            sb.append("s.idpersona = ro.idpersona and ");
+            sb.append("s.idcliente = ro.idcliente and ");
+            sb.append("s.idtipopago = ro.idtipopago and ");
+            sb.append("s.idmoneda = ro.idmoneda ");
+            sb.append("WHERE s.idclienteservicio =  ?1 ");
+            sb.append("AND s.idpersonaservicio =  ?2 ");
+            sb.append("AND s.idservicio = ?3  ");
+            sb.append("ORDER BY s.idserviciooperacion ");
+
+            Query q = getEntityManager().createNativeQuery(sb.toString(), Serviciooperacion.class);
+            q.setParameter(1, servicio.getServicioPK().getIdcliente());
+            q.setParameter(2, servicio.getServicioPK().getIdpersona());
+            q.setParameter(3, servicio.getServicioPK().getIdservicio());
+
+            return q.getResultList();
+        } catch (Exception ex) {
+            throw new NandutiEJBException("No se pudo listar todos los servicios de un facturador.", ex);
+        }
+    }
+    */
 }
