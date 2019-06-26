@@ -13,6 +13,15 @@ import { ServicioCarrierModule } from './paquetes/servicio-carrier/servicio-carr
 import { ServicioRcModule } from './paquetes/servicio-rc/servicio-rc.module';
 import { TipoOperacionModule } from './paquetes/tipo-operacion/tipo-operacion.module';
 import { ClienteModule } from './paquetes/cliente/cliente.module';
+import { PlantillaServicioModule } from './paquetes/plantilla-servicio/plantilla-servicio.module';
+import { RedModule } from './paquetes/red/red.module';
+import { TipoPagoModule } from './paquetes/tipo-pago/tipo-pago.module';
+import { MonedaNandutiModule } from './paquetes/moneda-nanduti/moneda-nanduti.module';
+import { ServicioOperacionModule } from './paquetes/servicio-operacion/servicio-operacion.module';
+import { RedOperacionModule } from './paquetes/red-operacion/red-operacion.module';
+import { PersonaModule } from './paquetes/persona/persona.module';
+import { ServicioModule } from './paquetes/servicio/servicio.module';
+import { FacturadorNandutiModule } from './paquetes/facturador-nanduti/facturador-nanduti.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(
@@ -59,6 +68,28 @@ import { ClienteModule } from './paquetes/cliente/cliente.module';
         }
     }
     ),
+    TypeOrmModule.forRoot(
+      {
+        name: 'nandutibase',
+        type: 'postgres',
+        host: '192.168.30.80',
+        port: 5432,
+        username: 'postgres',
+        password: 'sql$',
+        database: 'nanduti',
+        schema: 'base',
+        synchronize: false,
+        logging: false,
+        entities: [
+            'src/entities/nandutibase/**/*.ts'
+
+        ],
+        cli: {
+            entitiesDir: 'src/entities',
+            migrationsDir: 'src/migration',
+            subscribersDir: 'src/subscriber'
+        },
+    }),
     EntidadModule,
     TicketTransaccionnModule,
     LocalidadModule,
@@ -69,7 +100,16 @@ import { ClienteModule } from './paquetes/cliente/cliente.module';
     ServicioCarrierModule,
     ServicioRcModule,
     TipoOperacionModule,
-    ClienteModule],
+    ClienteModule,
+    PlantillaServicioModule,
+    RedModule,
+    TipoPagoModule,
+    MonedaNandutiModule,
+    ServicioOperacionModule,
+    RedOperacionModule,
+    PersonaModule,
+    ServicioModule,
+    FacturadorNandutiModule],
   
   controllers: [AppController],
   providers: [AppService],

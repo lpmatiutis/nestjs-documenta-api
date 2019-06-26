@@ -1,6 +1,6 @@
 import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
 import {redoperacion} from "./redoperacion";
-
+import { serviciooperacion } from './serviciooperacion';
 
 @Entity("tipopago",{schema:"reddepago" } )
 @Index("idx_uq_tipopago_codigo",["codigo",],{unique:true})
@@ -40,7 +40,7 @@ export class tipopago extends BaseEntity {
         
 
    
-    @OneToMany(type=>redoperacion, redoperacion=>redoperacion.idtipopago,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
+    @OneToMany(type=>serviciooperacion, serviciooperacion=>serviciooperacion.idtipopago,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
     redoperacions:Promise<redoperacion[]>;
     
 }

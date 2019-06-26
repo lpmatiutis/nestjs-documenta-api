@@ -8,25 +8,25 @@ import {serviciooperacion} from "./serviciooperacion";
 export class redoperacion extends BaseEntity {
 
    
-    @ManyToOne(type=>red, red=>red.redoperacions,{ primary:true, nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>red, red=>red.redoperacions,{ primary:true, nullable:false, eager: true, onDelete: 'RESTRICT',onUpdate: 'RESTRICT',  })
     @JoinColumn({ name:'idpersona'})
-    idpersona:Promise<red | null>;
+    idpersona:red | null;
 
     @RelationId((redoperacion: redoperacion) => redoperacion.idpersona)
     idpersonaId: Promise<number[]>;
 
    
-    @ManyToOne(type=>red, red=>red.redoperacions2,{ primary:true, nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>red, red=>red.redoperacions2,{ primary:true, nullable:false, eager: true, onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'idcliente'})
-    idcliente:Promise<red | null>;
+    idcliente:red | null;
 
     @RelationId((redoperacion: redoperacion) => redoperacion.idcliente)
     idclienteId: Promise<number[]>;
 
    
-    @ManyToOne(type=>tipopago, tipopago=>tipopago.redoperacions,{ primary:true, nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>tipopago, tipopago=>tipopago.redoperacions,{ primary:true, nullable:false, eager: true, onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'idtipopago'})
-    idtipopago:Promise<tipopago | null>;
+    idtipopago:tipopago | null;
 
     @RelationId((redoperacion: redoperacion) => redoperacion.idtipopago)
     idtipopagoId: Promise<number[]>;

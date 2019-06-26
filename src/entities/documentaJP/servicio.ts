@@ -82,7 +82,7 @@ export class servicio extends BaseEntity {
    
     @ManyToOne(type=>facturador, facturador=>facturador.servicios,{  nullable:false, })
     @JoinColumn({ name:'facturador'})
-    facturador:Promise<facturador | null>;
+    facturador:facturador | null;
 
     @RelationId((servicio: servicio) => servicio.facturador)
     facturadorId: Promise<string[]>;

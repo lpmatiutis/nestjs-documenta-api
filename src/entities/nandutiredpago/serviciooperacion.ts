@@ -2,6 +2,7 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 import {redoperacion} from "./redoperacion";
 import {serviciomoneda} from "./serviciomoneda";
 import {cajaserviciooperacion} from "./cajaserviciooperacion";
+import { tipopago } from "./tipopago";
 
 
 @Entity("serviciooperacion",{schema:"reddepago" } )
@@ -16,65 +17,65 @@ export class serviciooperacion extends BaseEntity {
         
 
    
-    @ManyToOne(type=>redoperacion, redoperacion=>redoperacion.serviciooperacions,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>redoperacion, redoperacion=>redoperacion.serviciooperacions,{  nullable:false, eager: true, onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'idpersona'})
-    idpersona:Promise<redoperacion | null>;
+    idpersona:redoperacion | null;
 
     @RelationId((serviciooperacion: serviciooperacion) => serviciooperacion.idpersona)
     idpersonaId: Promise<number[]>;
 
    
-    @ManyToOne(type=>redoperacion, redoperacion=>redoperacion.serviciooperacions2,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>redoperacion, redoperacion=>redoperacion.serviciooperacions2,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT',  eager: true })
     @JoinColumn({ name:'idcliente'})
-    idcliente:Promise<redoperacion | null>;
+    idcliente:redoperacion | null;
 
     @RelationId((serviciooperacion: serviciooperacion) => serviciooperacion.idcliente)
     idclienteId: Promise<number[]>;
 
    
-    @ManyToOne(type=>redoperacion, redoperacion=>redoperacion.serviciooperacions3,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>redoperacion, redoperacion=>redoperacion.serviciooperacions3,{  nullable:false, eager: true, onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'idtipopago'})
-    idtipopago:Promise<redoperacion | null>;
+    idtipopago:redoperacion | null;
 
     @RelationId((serviciooperacion: serviciooperacion) => serviciooperacion.idtipopago)
     idtipopagoId: Promise<number[]>;
 
    
-    @ManyToOne(type=>redoperacion, redoperacion=>redoperacion.serviciooperacions4,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>redoperacion, redoperacion=>redoperacion.serviciooperacions4,{  nullable:false, eager: true, onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'idmoneda'})
-    idmoneda:Promise<redoperacion | null>;
+    idmoneda:redoperacion | null;
 
     @RelationId((serviciooperacion: serviciooperacion) => serviciooperacion.idmoneda)
     idmonedaId: Promise<number[]>;
 
    
-    @ManyToOne(type=>serviciomoneda, serviciomoneda=>serviciomoneda.serviciooperacions,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'CASCADE' })
+    @ManyToOne(type=>serviciomoneda, serviciomoneda=>serviciomoneda.serviciooperacions,{  nullable:false, eager: true, onDelete: 'RESTRICT',onUpdate: 'CASCADE' })
     @JoinColumn({ name:'idpersonaservicio'})
-    idpersonaservicio:Promise<serviciomoneda | null>;
+    idpersonaservicio:serviciomoneda | null;
 
     @RelationId((serviciooperacion: serviciooperacion) => serviciooperacion.idpersonaservicio)
     idpersonaservicioId: Promise<number[]>;
 
    
-    @ManyToOne(type=>serviciomoneda, serviciomoneda=>serviciomoneda.serviciooperacions2,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'CASCADE' })
+    @ManyToOne(type=>serviciomoneda, serviciomoneda=>serviciomoneda.serviciooperacions2,{  nullable:false, eager: true, onDelete: 'RESTRICT',onUpdate: 'CASCADE' })
     @JoinColumn({ name:'idclienteservicio'})
-    idclienteservicio:Promise<serviciomoneda | null>;
+    idclienteservicio:serviciomoneda | null;
 
     @RelationId((serviciooperacion: serviciooperacion) => serviciooperacion.idclienteservicio)
     idclienteservicioId: Promise<number[]>;
 
    
-    @ManyToOne(type=>serviciomoneda, serviciomoneda=>serviciomoneda.serviciooperacions3,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'CASCADE' })
+    @ManyToOne(type=>serviciomoneda, serviciomoneda=>serviciomoneda.serviciooperacions3,{  nullable:false, eager: true, onDelete: 'RESTRICT',onUpdate: 'CASCADE' })
     @JoinColumn({ name:'idservicio'})
-    idservicio:Promise<serviciomoneda | null>;
+    idservicio:serviciomoneda | null;
 
     @RelationId((serviciooperacion: serviciooperacion) => serviciooperacion.idservicio)
     idservicioId: Promise<number[]>;
 
    
-    @ManyToOne(type=>serviciomoneda, serviciomoneda=>serviciomoneda.serviciooperacions4,{ onDelete: 'RESTRICT',onUpdate: 'CASCADE' })
+    @ManyToOne(type=>serviciomoneda, serviciomoneda=>serviciomoneda.serviciooperacions4,{ eager: true, onDelete: 'RESTRICT',onUpdate: 'CASCADE' })
     @JoinColumn({ name:'idmonedaservicio'})
-    idmonedaservicio:Promise<serviciomoneda | null>;
+    idmonedaservicio:serviciomoneda | null;
 
     @RelationId((serviciooperacion: serviciooperacion) => serviciooperacion.idmonedaservicio)
     idmonedaservicioId: Promise<number[]>;

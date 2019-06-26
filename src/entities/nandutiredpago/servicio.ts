@@ -7,6 +7,7 @@ import {serviciometodo} from "./serviciometodo";
 import {serviciomoneda} from "./serviciomoneda";
 import {serviciotiposervicio} from "./serviciotiposervicio";
 import {tipoplantillaservicio} from "./tipoplantillaservicio";
+import { serviciooperacion } from "./serviciooperacion";
 
 
 @Entity("servicio",{schema:"reddepago" } )
@@ -367,10 +368,13 @@ export class servicio extends BaseEntity {
     
 
    
-    @ManyToMany(type=>tipoplantillaservicio, tipoplantillaservicio=>tipoplantillaservicio.servicios,{  nullable:false, })
-    @JoinTable({ name:'servicioplantilla'})
-    tipoplantillaservicios:Promise<tipoplantillaservicio[]>;
+    // @ManyToMany(type=>tipoplantillaservicio, tipoplantillaservicio=>tipoplantillaservicio.servicios,{  nullable:false, })
+    // @JoinTable({ name:'servicioplantilla'})
+    // tipoplantillaservicios:Promise<tipoplantillaservicio[]>;
     
-    @RelationId((servicio: servicio) => servicio.tipoplantillaservicios)
-    tipoplantillaserviciosId: Promise<undefined[]>;
+    // @RelationId((servicio: servicio) => servicio.tipoplantillaservicios)
+    // tipoplantillaserviciosId: Promise<undefined[]>;
+
+    @OneToMany(type=>serviciooperacion, serviciooperacion=>serviciooperacion.idservicio,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
+    serviciooperacion:Promise<serviciooperacion[]>;
 }

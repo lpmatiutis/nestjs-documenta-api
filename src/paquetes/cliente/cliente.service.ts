@@ -8,5 +8,6 @@ export class ClienteService {
     constructor(@InjectRepository(cliente, 'nandutiredpago') private clienteRepository: Repository<cliente>) { }
 
     async findAll(): Promise<cliente[]> {
-        return await this.clienteRepository.find()};
+        return await this.clienteRepository.find();
+    }
 }

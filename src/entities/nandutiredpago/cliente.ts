@@ -157,12 +157,12 @@ export class cliente extends BaseEntity {
     
 
    
-    @OneToMany(type=>red, red=>red.idpersona,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
+    @OneToMany(type=>red, red=>red.idpersona,{lazy:true, onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
     reds:Promise<red[]>;
     
 
    
-    @OneToMany(type=>red, red=>red.idcliente,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
+    @OneToMany(type=>red, red=>red.idcliente,{lazy:true, onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
     reds2:Promise<red[]>;
     
 }

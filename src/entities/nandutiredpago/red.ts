@@ -7,17 +7,17 @@ import {redoperacion} from "./redoperacion";
 export class red extends BaseEntity {
 
    
-    @ManyToOne(type=>cliente, cliente=>cliente.reds,{ primary:true, nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>cliente, cliente=>cliente.reds,{ primary:true, nullable:false, eager: true, cascade: true, onDelete: 'RESTRICT',onUpdate: 'RESTRICT'})
     @JoinColumn({ name:'idpersona'})
-    idpersona:Promise<cliente | null>;
+    idpersona:cliente | null;
 
     @RelationId((red: red) => red.idpersona)
     idpersonaId: Promise<number[]>;
 
    
-    @ManyToOne(type=>cliente, cliente=>cliente.reds2,{ primary:true, nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>cliente, cliente=>cliente.reds2,{ primary:true, nullable:false, eager:true, cascade:true, onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'idcliente'})
-    idcliente:Promise<cliente | null>;
+    idcliente:cliente | null;
 
     @RelationId((red: red) => red.idcliente)
     idclienteId: Promise<number[]>;
