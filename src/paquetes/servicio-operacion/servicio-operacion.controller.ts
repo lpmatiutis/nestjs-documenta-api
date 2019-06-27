@@ -37,4 +37,9 @@ export class ServicioOperacionController {
         this.logger.log('servicio 2: ' + JSON.stringify(serviciooperacion));
         return this.service.create(serviciooperacion);
     }
+
+    @Post('java')
+    async findJava(@Body() servicio: servicio): Promise<serviciooperacion[]> {
+        return this.service.findAllJoinJava(servicio);
+    }
 }

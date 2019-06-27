@@ -73,6 +73,23 @@ export class ServicioOperacionService {
         console.log('servicio operacion: ' + JSON.stringify(serviciooperacion));
         return await this.servicioOperacionRepository.save(serviciooperacion);
     }
+
+    async findAllJoinJava(servicio: servicio): Promise<serviciooperacion[]> {
+        
+        return await this.servicioOperacionRepository
+        .createQueryBuilder("s")
+        .innerJoin("redoperacion", "ro", "on s.idpersona = ro.idpersona on s.idpersona = ro.idpersona")
+        //.innerJoin("s.idpersona = ro.idpersona on s.idpersona = ro.idpersona")
+        //.innerJoin("s.idcliente = ro.idcliente", "")
+        //.innerJoin("s.idtipopago = ro.idtipopago", "")
+        //.innerJoin("s.idmoneda = ro.idmoneda", "")
+        .where("s.idclienteservicio = :idclienteservicio", {idclienteservicio: servicio.idcliente})
+        .andWhere("s.idpersonaservicio = :idpersonaservicio", {idpersonaservicio: servicio.idpersona})
+        .andWhere("s.idservicio = :idservicio", {idservicio: servicio.idservicio})
+        .orderBy("s.idserviciooperacion")
+        .getMany();
+    }
+        
     /*
     public List<Serviciooperacion> findServicioOperationByServicio(Servicio servicio) throws NandutiEJBException {
         try {

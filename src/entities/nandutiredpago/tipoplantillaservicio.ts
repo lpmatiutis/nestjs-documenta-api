@@ -1,5 +1,5 @@
 import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
-import {servicio} from "./servicio";
+//import {servicio} from "./servicio";
 
 
 @Entity("tipoplantillaservicio",{schema:"reddepago" } )
@@ -37,7 +37,7 @@ export class tipoplantillaservicio extends BaseEntity {
         
 
    
-    @ManyToMany(type=>servicio, servicio=>servicio.tipoplantillaservicios)
-    servicios:Promise<servicio[]>;
+    //ManyToMany(type=>servicio, servicio=>servicio.tipoplantillaservicios)
+    //servicios:Promise<servicio[]>;
     
 }
